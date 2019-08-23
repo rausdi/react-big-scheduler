@@ -22,6 +22,7 @@ import InfiniteScroll from './InfiniteScroll'
 import InfiniteScroll2 from './InfiniteScroll2'
 import ComingSoon from './ComingSoon'
 import CustomPopoverStyle from './CustomPopoverStyle'
+import CustomResourceBar from './CustomResourceBar'
 
 render((
     <Router history={hashHistory}>
@@ -46,6 +47,7 @@ render((
         <Route path="/infinitescroll" component={InfiniteScroll}/>
         <Route path="/infinitescroll2" component={InfiniteScroll2}/>
         <Route path="/custompopover" component={CustomPopoverStyle}/>
+        <Route path="/customresourcebar" component={CustomResourceBar}/>
     </Router>
 ), document.getElementById('root'))
 

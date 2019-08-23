@@ -144,6 +144,12 @@ class Nav extends Component {
                             <span>Custom popover style</span>
                         </Link>
                     </li>
+                    <li style={liStyle}>
+                        <Link target="_self"
+                              to='/customresourcebar'>
+                            <span>Custom resource bar</span>
+                        </Link>
+                    </li>
                 </ul>
                 <div style={{clear: "both", marginBottom: '24px'}}></div>
             </div>
