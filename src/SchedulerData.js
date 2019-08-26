@@ -676,12 +676,14 @@ export default class SchedulerData {
             let headerEvents = headers.map((header) => {
                 return this._createInitHeaderEvents(header);
             });
+            const { id, name, ...restResource } = resource;
 
             return {
-                slotId: resource.id,
-                slotName: resource.name,
+                slotId: id,
+                slotName: name,
                 rowHeight: 0,
-                headerItems: headerEvents
+                headerItems: headerEvents,
+                ...restResource,
             };
         });
     }

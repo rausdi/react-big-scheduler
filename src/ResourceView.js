@@ -19,6 +19,8 @@ class ResourceView extends Component {
         const {schedulerData, contentScrollbarHeight, slotClickedFunc, slotItemTemplateResolver} = this.props;
         const {renderData} = schedulerData;
 
+        console.warn(renderData);
+
         let width = schedulerData.getResourceTableWidth() - 2;
         let paddingBottom = contentScrollbarHeight;
         let resourceList = renderData.map((item) => {

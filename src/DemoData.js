@@ -29,6 +29,48 @@ const DemoData = {
             name: 'Resource7Resource7Resource7Resource7Resource7',
         }
     ],
+    resourceForCustomResourceBar: [
+        {
+            id: 'r1',
+            name: 'Resource1',
+            tasksCount: 45,
+            rating: 4.8
+        },
+        {
+            id: 'r2',
+            name: 'Resource2',
+            tasksCount: 45,
+            rating: 4.8
+        },
+        {
+            id: 'r3',
+            name: 'Resource3',
+            tasksCount: 45,
+            rating: 4.8
+        },
+        {
+            id: 'r4',
+            name: 'Resource4',
+            tasksCount: 45,
+            rating: 4.8
+        },
+        {
+            id: 'r5',
+            name: 'Resource5',
+            tasksCount: 45,
+            rating: 4.8
+        },
+        {
+            id: 'r6',
+            name: 'Resource6',
+            tasksCount: 45,
+            rating: 4.8
+        },
+        {
+            id: 'r7',
+            name: 'Resource7Resource7Resource7Resource7Resource7',
+        }
+    ],
     events: [
         {
             id: 1,

@@ -16,7 +16,8 @@ class CustomResourceBar extends Component{
         //let schedulerData = new SchedulerData(new moment("2017-12-18").format(DATE_FORMAT), ViewTypes.Week);
         let schedulerData = new SchedulerData('2017-12-18', ViewTypes.Week);
         schedulerData.localeMoment.locale('en');
-        schedulerData.setResources(DemoData.resources);
+        schedulerData.config.eventItemLineHeight = 56;
+        schedulerData.setResources(DemoData.resourceForCustomResourceBar);
         schedulerData.setEvents(DemoData.events);
         this.state = {
             viewModel: schedulerData
@@ -48,6 +49,7 @@ class CustomResourceBar extends Component{
                                onScrollRight={this.onScrollRight}
                                onScrollTop={this.onScrollTop}
                                onScrollBottom={this.onScrollBottom}
+                               renderCustomResourceBar={this.renderCustomResourceBar}
                     />
                 </div>
                 <Tips />
@@ -180,6 +182,61 @@ class CustomResourceBar extends Component{
 
     onScrollBottom = (schedulerData, schedulerContent, maxScrollTop) => {
         console.log('onScrollBottom');
+    }
+
+    renderCustomResourceBar = (schedulerData, contentScrollbarHeight, resourceScrollbarWidth, contentScrollbarWidth) => {
+        const { renderData, config } = schedulerData;
+
+        let resourceList = renderData.map((item) => {
+            const { slotName, slotId, rowHeight, tasksCount, rating } = item;
+
+            return (
+                <tr key={slotId}>
+                    <td data-resource-id={slotId} style={{height: rowHeight}}>
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                            <p>{slotName}</p>
+                            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                                <div>{tasksCount}</div>
+                                <div>{rating}</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            );
+        });
+        let resourceTableWidth = schedulerData.getResourceTableWidth();
+        let resourceContentStyle = {overflowX: "auto", overflowY: "auto", width: resourceTableWidth + resourceScrollbarWidth - 2, margin: `0px -${contentScrollbarWidth}px 0px 0px`};
+        if (config.schedulerMaxHeight > 0) {
+            resourceContentStyle = {
+                ...resourceContentStyle,
+                maxHeight: config.schedulerMaxHeight - config.tableHeaderHeight
+            };
+        }
+
+        return (
+            <div className="resource-view">
+                <div style={{overflow: "hidden", borderBottom: "1px solid #e9e9e9", height: config.tableHeaderHeight}}>
+                    <div style={{overflowX: "scroll", overflowY: "hidden", margin: `0px 0px -${contentScrollbarHeight}px`}}>
+                        <table className="resource-table">
+                            <thead>
+                            <tr style={{height: config.tableHeaderHeight}}>
+                                <th className="header3-text">
+                                    Title
+                                </th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div style={resourceContentStyle}>
+                    <table className="resource-table">
+                        <tbody>
+                        {resourceList}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        )
     }
 }
 
